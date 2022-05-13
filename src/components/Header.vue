@@ -14,7 +14,7 @@ export default {
         title: String,
     },
     components: {
-        ButtonComponent
+        ButtonComponent,
     }
 }
 </script>
