@@ -1,4 +1,4 @@
-# random-korean
+# Vue Task Manager
 
 ## Project setup
 ```
