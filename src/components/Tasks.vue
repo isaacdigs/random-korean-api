@@ -1,6 +1,6 @@
 <template>
     <div :key="task.id" v-for="task in tasks">
-        <TaskComponent @delete-task="$emit('delete-task', task.id)" :task="task" />
+        <TaskComponent @toggle-task="$emit('toggle-task', task.id)" @delete-task="$emit('delete-task', task.id)" :task="task" />
     </div>
 </template>
 
@@ -15,6 +15,6 @@ import TaskComponent from './Task'
         components: {
             TaskComponent
         },
-        emits: ['delete-task']
+        emits: ['delete-task', 'toggle-task']
     }
 </script>

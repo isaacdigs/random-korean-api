@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <HeaderComponent title="Task Tracker"/>
-    <TasksComponent @delete-task="deleteTask" :tasks="tasks" />
+    <TasksComponent @toggle-task="toggleTask" @delete-task="deleteTask" :tasks="tasks" />
   </div>
+  <div></div>
 </template>
 
 <script>
@@ -22,7 +23,14 @@ export default {
   },
   methods: {
     deleteTask(id) {
-      console.log('task', id)
+      this.tasks = this.tasks.filter(task => task.id !== id)},
+    toggleTask(id) {
+      this.tasks = this.tasks.map(task => {
+        if (task.id === id) {
+          task.reminder = !task.reminder
+        }
+        return task
+      })
     }
   },
   created() {

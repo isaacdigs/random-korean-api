@@ -1,5 +1,5 @@
 <template>
-    <div :class="[task.reminder ? 'reminder' : '', 'task']">
+    <div @dblclick="onToggle(task.id)" :class="[task.reminder ? 'reminder' : '', 'task']">
         <h3>{{task.text}}
             <i @click="onDelete(task.id)" class="fas fa-times"></i>
         </h3>
@@ -12,11 +12,15 @@
     export default {
         name: 'TaskComponent',
         props: {
-            task: Object
+            task: Object,
+            reminder: Boolean
         },
         methods: {
             onDelete(id) {
                 this.$emit('delete-task', id)
+            },
+            onToggle(id) {
+                this.$emit('toggle-task', id)
             }
         }
     }
