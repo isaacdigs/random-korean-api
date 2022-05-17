@@ -43,6 +43,7 @@
 
         if (this.text.trim()) {
           this.$emit('add-task', {
+            id: Date.now(),
             text: this.text,
             day: this.day,
             reminder: this.reminder,
