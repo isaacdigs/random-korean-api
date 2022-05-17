@@ -17,7 +17,7 @@
         },
         methods: {
             onDelete(id) {
-                this.$emit('delete-task', id)
+                this.$emit('delete-task', id);
             },
             onToggle(id) {
                 this.$emit('toggle-task', id)
