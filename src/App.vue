@@ -1,7 +1,13 @@
 <template>
   <div class="container">
-    <HeaderComponent title="Task Tracker"/>
-    <TasksComponent @toggle-task="toggleTask" @delete-task="deleteTask" :tasks="tasks" />
+    <HeaderComponent @toggle-add-task="toggleAddTask" title="Task Tracker" :showAddTask="showAddTask"/>
+    <div v-if="showAddTask">
+      <AddTask @add-task="addTask"/>
+    </div>
+    <TasksComponent 
+      @toggle-task="toggleTask" 
+      @delete-task="deleteTask" :tasks="tasks" 
+    />
   </div>
   <div></div>
 </template>
@@ -9,16 +15,19 @@
 <script>
 import HeaderComponent from './components/Header'
 import TasksComponent from './components/Tasks'
+import AddTask from './components/AddTask'
 
 export default {
   name: 'App',
   components: {
     HeaderComponent,
-    TasksComponent
+    TasksComponent,
+    AddTask
   },
   data() {
     return {
-      tasks: []
+      tasks: [],
+      showAddTask: false,
     }
   },
   methods: {
@@ -31,7 +40,14 @@ export default {
         }
         return task
       })
+    },
+    addTask(task) {
+      this.tasks.push(task)
+    },
+    toggleAddTask() {
+      this.showAddTask = !this.showAddTask
     }
+
   },
   created() {
     this.tasks = [
